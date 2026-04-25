@@ -1,0 +1,7 @@
+*.mp4
+*.mov
+videos/
+videos/
+__pycache__/
+.venv/
+*.sqlite3

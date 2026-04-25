@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Playfair+Display:ital@0;1&family=Cormorant+Garamond:wght@300;400&family=Jost:wght@200;300&family=Quicksand:wght@300;400&family=Raleway:wght@200;300&family=EB+Garamond:ital@0;1&family=Work+Sans:wght@200;300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алтай Турс - Туры на Алтай</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* ШАПКА (прозрачная, текст справа) */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: transparent;
+            padding: 20px 50px;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-left: 40px;
+            text-decoration: none;
+            transition: 0.3s;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+
+        /* ГЛАВНЫЙ БАННЕР - ФОТО НА ВЕСЬ ЭКРАН */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            background-image: url('https://photocentra.ru/images/main67/678040_main.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Затемнение для читаемости текста */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding-left: 10%;
+            max-width: 900px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 120px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+            letter-spacing: 8px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-family: 'Caveat', cursive;  /* ШРИФТ */
+            font-size: 30px;           /* РАЗМЕР */
+            font-weight: 400;          /* ЖИРНОСТЬ (100-900) */
+            color: white;              /* ЦВЕТ */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);  /* ТЕНЬ */
+            margin-bottom: 30px;       /* ОТСТУП СНИЗУ */
+            letter-spacing: 1px;       /* РАССТОЯНИЕ МЕЖДУ БУКВАМИ */
+            line-height: 1.4;          /* ВЫСОТА СТРОКИ */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: #2D6A4F;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background: #1B4D3E;
+        }
+
+        /* СОЦИАЛЬНЫЕ СЕТИ СПРАВА - ТОНКИЕ БЕЛЫЕ ИКОНКИ */
+        .social-sidebar {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1.5px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .social-icon i {
+            font-size: 22px;
+            color: white;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .social-icon.instagram:hover {
+            background: #d62976;
+            border-color: #d62976;
+        }
+
+        .social-icon.telegram:hover {
+            background: #0088cc;
+            border-color: #0088cc;
+        }
+
+        .social-icon.whatsapp:hover {
+            background: #25D366;
+            border-color: #25D366;
+        }
+
+        /* Секция туров */
+        .tours-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;  /* Тонкое начертание */
+            letter-spacing: 4px; /* Увеличенное расстояние */
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #2D6A4F;
+            position: relative;
+        }
+
+
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #2D6A4F;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+        }
+
+        .tour-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .tour-image {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .tour-card:hover .tour-image {
+            transform: scale(1.05);
+        }
+
+        .tour-image-container {
+            overflow: hidden;
+        }
+
+        .tour-content {
+            padding: 25px;
+        }
+
+        .tour-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #2D6A4F;
+        }
+
+        .tour-duration {
+            color: #0B3D3F;
+            margin-bottom: 12px;
+            font-weight: 600;
+            display: inline-block;
+            background: #e8f5e9;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .tour-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tour-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2D6A4F;
+            margin-bottom: 20px;
+        }
+
+        .tour-price span {
+            font-size: 16px;
+            font-weight: normal;
+            color: #999;
+        }
+
+        .book-btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background: linear-gradient(135deg, #0B3D3F 0%, #2D6A4F 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+        }
+
+        .book-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(45,106,79,0.4);
+        }
+
+        /* Отзывы */
+        .reviews {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            background: white;
+        }
+
+        .review-photo-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .review-photo-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #2D6A4F;
+            transition: all 0.3s;
+        }
+
+        .review-card:hover .review-photo-img {
+            border-color: #FFD700;
+            transform: scale(1.05);
+        }
+
+        .review-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .review-text:before {
+            content: "«";
+            font-size: 24px;
+            color: #2D6A4F;
+            margin-right: 5px;
+        }
+
+        .review-text:after {
+            content: "»";
+            font-size: 24px;
+            color: #2D6A4F;
+            margin-left: 5px;
+        }
+
+        .review-author {
+            color: #2D6A4F;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .review-location {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .review-rating {
+            color: #FFD700;
+            font-size: 22px;
+            letter-spacing: 3px;
+            margin-top: 10px;
+        }
+
+        /* Футер */
+        footer {
+            background: #0B3D3F;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        .footer-social {
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: opacity 0.3s;
+        }
+
+        .footer-social a:hover {
+            opacity: 0.8;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 48px;
+                letter-spacing: 4px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .tours-grid, .reviews-container {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .nav-links a {
+                margin: 0 15px;
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .hero-content {
+                padding-left: 5%;
+            }
+
+            .social-sidebar {
+                right: 15px;
+                gap: 12px;
+            }
+
+            .social-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .social-icon i {
+                font-size: 18px;
+            }
+        }
+
+        /* Кнопка вверх */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2D6A4F;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 24px;
+            z-index: 99;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            background: #1B4D3E;
+            transform: translateY(-3px);
+        }
+
+        /* СТРАНИЦА АЛТАЙ - ДУША */
+        .soul-page {
+            min-height: 100vh;
+            width: 100%;
+            background-image: url('https://cs14.pikabu.ru/post_img/2023/06/06/4/og_og_1686025378215812198.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+        }
+
+        .soul-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .soul-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .soul-title {
+            text-align: center;
+            font-size: 56px;
+            color: white;
+            margin-bottom: 60px;
+            font-family: 'Caveat', cursive;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* ДВЕ КОЛОНКИ */
+        .soul-two-columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .soul-left {
+            flex: 1;
+            text-align: left;
+            padding-left: 5%;
+        }
+
+        .soul-right {
+            flex: 1;
+            text-align: left;
+            padding-right: 5%;
+            margin-top: 80px;  /* Сдвигаем правый блок ниже */
+        }
+
+        /* Текстовые блоки */
+        .soul-text-block {
+            background: transparent;  /* Без фона */
+            padding: 20px;
+        }
+
+        .soul-text-block h3 {
+            font-size: 32px;
+            color: white;
+            margin-bottom: 20px;
+            font-family: 'Caveat', cursive;
+            letter-spacing: 1px;
+        }
+
+        .soul-text-block p {
+            font-family: 'Caveat', cursive;
+            font-size: 24px;
+            font-weight: 500;
+            color: white;
+            line-height: 1.4;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Цитата */
+        .soul-quote {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+        }
+
+        .soul-quote p {
+            font-family: 'Caveat', cursive;
+            font-size: 28px;
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Адаптивность для мобильных */
+        @media (max-width: 768px) {
+            .soul-two-columns {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .soul-left, .soul-right {
+                padding: 0 20px;
+                margin-top: 0;
+                text-align: center;
+            }
+
+            .soul-right {
+                margin-top: 0;
+            }
+
+            .soul-title {
+                font-size: 36px;
+            }
+
+            .soul-text-block h3 {
+                font-size: 28px;
+            }
+
+            .soul-text-block p {
+                font-size: 20px;
+            }
+
+            .soul-quote p {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-links">
+                <a href="#home">Главная</a>
+                <a href="#soul">Алтай - душа</a>
+                <a href="#tours">Туры</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#contacts">Контакты</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН С ТОНКИМИ БЕЛЫМИ ИКОНКАМИ -->
+    <div class="hero" id="home">
+        <div class="hero-content">
+            <h1>АЛТАЙ</h1>
+            <p>Откройте для себя удивительную природу, горы и озера</p>
+            <a href="#tours" class="btn">Выбрать тур</a>
+        </div>
+
+        <!-- СОЦИАЛЬНЫЕ СЕТИ - ТОНКИЕ БЕЛЫЕ ИКОНКИ -->
+        <div class="social-sidebar">
+            <a href="https://instagram.com/ваш_аккаунт" target="_blank" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://t.me/ваш_телеграм" target="_blank" class="social-icon telegram">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+            <a href="https://wa.me/79991234567" target="_blank" class="social-icon whatsapp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- СТРАНИЦА АЛТАЙ - ДУША -->
+    <!-- СТРАНИЦА АЛТАЙ - ДУША -->
+    <div class="soul-page" id="soul">
+        <div class="soul-content">
+            <h2 class="soul-title">Почему необходимо поехать на Алтай?</h2>
+
+            <div class="soul-two-columns">
+                <!-- Левый блок -->
+                <div class="soul-left">
+                    <div class="soul-text-block">
+                        <h3> Место силы</h3>
+                        <p>Алтай называют местом силы.<br>Здесь уникальная энергетика,<br>которая наполняет и вдохновляет.</p>
+                    </div>
+                </div>
+
+                <!-- Правый блок (чуть ниже) -->
+                <div class="soul-right">
+                    <div class="soul-text-block">
+                        <h3> Чистейшая природа</h3>
+                        <p>Невероятной красоты горы,<br>озера с бирюзовой водой,<br>чистейший воздух - здесь отдыхает душа.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Нижняя строка с цитатой -->
+            <div class="soul-quote">
+                <p> "Алтай — это не просто горы. Это состояние души, которое меняет тебя навсегда" </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tours-section" id="tours">
+        <h2 class="section-title">Популярные туры</h2>
+        <div class="tours-grid">
+            {% for tour in tours %}
+            <div class="tour-card">
+                <div class="tour-image-container">
+                    {% if tour.image %}
+                    <img src="{{ tour.image.url }}" alt="{{ tour.name }}" class="tour-image">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500" alt="Горы Алтая" class="tour-image">
+                    {% endif %}
+                </div>
+                <div class="tour-content">
+                    <h3 class="tour-title">{{ tour.name }}</h3>
+                    <div class="tour-duration">⏱ {{ tour.duration }}</div>
+                    <p class="tour-description">{{ tour.description|truncatewords:20 }}</p>
+                    <div class="tour-price">{{ tour.price }} ₽ <span>/ чел</span></div>
+                    <a href="#" class="book-btn">📅 Забронировать</a>
+                </div>
+            </div>
+            {% empty %}
+            <p style="text-align: center; color: #555; font-size: 18px; grid-column: 1/-1;">
+                🏔️ Туры скоро появятся! <br>
+                Зайдите в админку и добавьте туры.
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="reviews" id="reviews">
+        <h2 class="section-title">Отзывы наших туристов</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="review-photo-wrapper">
+                    <img src="https://i.pinimg.com/736x/7a/29/f9/7a29f98aab92a76563386c516dacaa53.jpg" alt="Анна" class="review-photo-img">
+                </div>
+                <div class="review-text">Незабываемое путешествие! Горы Алтая покорили мое сердце. Обязательно вернусь сюда еще раз!</div>
+                <div class="review-author">— Анна Козлова</div>
+                <div class="review-location">📍 Телецкое озеро</div>
+                <div class="review-rating">★★★★★</div>
+            </div>
+            <div class="review-card">
+                <div class="review-photo-wrapper">
+                    <img src="https://s3.russpass.ru/rp-mag-public-prod/images/shutterstoc.form.width-2440.format-webp.webpquality-100_47kYDBQ.webp" alt="Дмитрий" class="review-photo-img">
+                </div>
+                <div class="review-text">Лучший отдых за последние годы! Чуйский тракт - это что-то невероятное.</div>
+                <div class="review-author">— Дмитрий Волков</div>
+                <div class="review-location">📍 Чуйский тракт</div>
+                <div class="review-rating">★★★★★</div>
+            </div>
+            <div class="review-card">
+                <div class="review-photo-wrapper">
+                    <img src="https://bookyogatours.ru/media/tour_images/25c75b44c3ec49c6758bf79d7966118a.jpeg" alt="Екатерина" class="review-photo-img">
+                </div>
+                <div class="review-text">Великолепная природа, отличная компания, душевная атмосфера. Алтай - место силы!</div>
+                <div class="review-author">— Екатерина Морозова</div>
+                <div class="review-location">📍 Каракольские озера</div>
+                <div class="review-rating">★★★★★</div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contacts">
+        <p>🌄 Алтай Турс - Ваше незабываемое путешествие</p>
+        <p>📞 +7 (999) 123-45-67 | 📧 info@altai-tours.ru</p>
+        <p>📍 г. Горно-Алтайск, ул. Центральная, 42</p>
+        <div class="footer-social">
+            <a href="https://instagram.com/ваш_аккаунт" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://t.me/ваш_телеграм" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            <a href="https://wa.me/79991234567" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+        <p style="margin-top: 20px; font-size: 14px;">© 2024 Туры на Алтай. Все права защищены.</p>
+    </footer>
+
+    <a href="#" class="scroll-top" id="scrollTop">↑</a>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const scrollBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+
+        scrollBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
